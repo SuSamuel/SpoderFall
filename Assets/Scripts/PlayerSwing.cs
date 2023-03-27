@@ -50,12 +50,12 @@ public class PlayerSwing : MonoBehaviour
     void Update()
     {   
         //if the left mouse button is pressed down
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetKeyDown(KeyCode.Q)){
             //start swinging
             StartGrapple();
         }
         //if the left mouse button is released
-        if (Input.GetMouseButtonUp(0)){
+        if (Input.GetKeyUp(KeyCode.Q)){
             //stop swinging
             StopGrapple();
         }

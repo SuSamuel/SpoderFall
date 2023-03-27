@@ -56,7 +56,7 @@ public class PlayerGrapple : MonoBehaviour
     void Update()
     {   
         // if the user pressed the right mouse button
-        if (Input.GetMouseButtonDown(1)){
+        if (Input.GetKeyDown(KeyCode.E)){
             //grapple
             StartGrapple();
         }
