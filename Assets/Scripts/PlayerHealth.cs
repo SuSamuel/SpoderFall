@@ -19,13 +19,13 @@ public class PlayerHealth : MonoBehaviour
         UpdateHPSlider();
     }
     //for testing decrease HP
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) // Replace with your desired input condition
-        {
-            DecreaseHP(20);
-        }
-    }
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.C)) // Replace with your desired input condition
+    //     {
+    //         DecreaseHP(20);
+    //     }
+    // }
     
     //decrease HP
     public void DecreaseHP(int amount)
