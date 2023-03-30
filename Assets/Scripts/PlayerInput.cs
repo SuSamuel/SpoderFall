@@ -15,6 +15,12 @@ public class PlayerInput : MonoBehaviour
     float x, y;
     bool jumping, crouching;
 
+    public GameObject pistol;
+
+    public GameObject rifle;
+
+    public bool onPistol;
+
     // Update is called once per frame
     void Update()
     {   
@@ -32,6 +38,25 @@ public class PlayerInput : MonoBehaviour
         //if hte left control key was left go then stop crouching
         if (Input.GetKeyUp(KeyCode.LeftControl))
             playerMovement.StopCrouch();
+
+        if (Input.GetKeyDown(KeyCode.Tab)){
+            onPistol = !onPistol;
+        }
+
+        if (onPistol == false){
+            pistol.SetActive(false);
+            rifle.SetActive(true);
+        }
+        else{
+            pistol.SetActive(true);
+            rifle.SetActive(false);
+        }
+
+        
+    }
+
+    void Awake(){
+        onPistol = false;
     }
 
     //gets for all the values
