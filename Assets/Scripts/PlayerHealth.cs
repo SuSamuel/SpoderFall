@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     public void DecreaseHP(int amount)
     {
         currentHP -= amount;
-        if (currentHP < 0)
+        if (currentHP <= 0)
         {
             currentHP = 0;
             

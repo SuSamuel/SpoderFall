@@ -7,6 +7,7 @@ public class grenade : MonoBehaviour
     public float delay = 3f; // Time in seconds before the grenade explodes
     public float explosionForce = 700f; // Force of the explosion
     public float explosionRadius = 5f; // Radius of the explosion
+    public int damage = 50;
     public GameObject explosionEffect; // Prefab for the explosion effect (e.g., particle system)
 
     private bool hasExploded = false;
@@ -45,6 +46,11 @@ public class grenade : MonoBehaviour
             if (rb != null)
             {
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
+            PlayerHealth playerhealth = nearbyObject.GetComponent<PlayerHealth>();
+            if (playerhealth != null)
+            {
+                playerhealth.DecreaseHP(damage);
             }
         }
 

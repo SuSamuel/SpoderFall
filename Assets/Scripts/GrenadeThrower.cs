@@ -1,29 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrenadeThrower : MonoBehaviour
 {
     public GameObject grenadePrefab; // Reference to the grenade prefab
     public float throwForce = 20f; // Force applied to the grenade when thrown
     public float throwCooldown = 2f; // Time interval between each throw
+    public int maxGrenades = 5;  // Set the maximum number of grenades
 
     public Camera playerCamera; // Reference to the player's camera
     public Rigidbody playerRigidbody; // Reference to the player's Rigidbody
+    public TMP_Text grenadeCountText;
 
     private float lastThrowTime; // The time when the last grenade was thrown
+    private int remainingGrenades; // Track the remaining grenades
     
     void Start()
     {
+        remainingGrenades = maxGrenades;
+        UpdateGrenadeCountText();
         playerCamera = Camera.main;
     }
     void Update()
     {
         // throw grenade
-        if (Input.GetKeyDown(KeyCode.G) && Time.time >= lastThrowTime + throwCooldown) // Check if the cooldown has passed
+        if (Input.GetKeyDown(KeyCode.G) && Time.time >= lastThrowTime + throwCooldown && remainingGrenades > 0) // Check if the cooldown has passed
         {
             ThrowGrenade();
             lastThrowTime = Time.time; // Update the last throw time
+            remainingGrenades--; // Decrement the remaining grenades
+            UpdateGrenadeCountText();
         }
     }
 
@@ -44,6 +53,10 @@ public class GrenadeThrower : MonoBehaviour
         float finalThrowForce = throwForce + playerSpeedInThrowDirection;
 
         rb.AddForce(throwDirection * finalThrowForce, ForceMode.VelocityChange);
+    }
+    void UpdateGrenadeCountText()
+    {
+        grenadeCountText.text = $"Grenades: {remainingGrenades}";
     }
 
 }
