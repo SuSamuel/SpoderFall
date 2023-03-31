@@ -31,6 +31,7 @@ public class PlayerShoot : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public Recoil RecoilObject;
 
     private void Update(){
         GetInput();
@@ -40,6 +41,14 @@ public class PlayerShoot : MonoBehaviour
     private void Awake(){
         bulletsLeft = magazine;
         readyToShoot = true;
+    }
+
+    private void OnEnable(){
+        readyToShoot = true;
+    }
+
+    private void OnDisable(){
+        readyToShoot = false;
     }
     private void GetInput(){
         if (allowHold){
@@ -68,7 +77,7 @@ public class PlayerShoot : MonoBehaviour
         readyToShoot = false;
         bulletsLeft--;
         bulletsShot--;
-
+        RecoilObject.recoil += 0.1f;
         //spread for AI and other guns
         //replace maincamera.forward with direction to implement
         //float x = Random.Range(-spread, spread);
@@ -84,7 +93,7 @@ public class PlayerShoot : MonoBehaviour
 
         //Instantiate(bulletHole, rayHit.point, Quaternion.Euler(0,180,0));
 
-        Instantiate(muzzleFlash, AttackPoint.position, Quaternion.identity);
+        Instantiate(muzzleFlash, AttackPoint.position, Quaternion.identity, AttackPoint);
 
         Invoke("ResetShots", timeBetweenShooting);
 
