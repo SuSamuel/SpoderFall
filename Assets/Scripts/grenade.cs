@@ -35,7 +35,7 @@ public class grenade : MonoBehaviour
         if (explosionEffect != null)
         {
             GameObject effectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(effectInstance, 5f);
+            Destroy(effectInstance, 4f);
         }
 
         // Apply explosion force to nearby objects
