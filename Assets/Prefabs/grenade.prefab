@@ -117,7 +117,10 @@ MonoBehaviour:
   delay: 2
   explosionForce: 1000
   explosionRadius: 5
+  damage: 50
   explosionEffect: {fileID: 4062316170517319314, guid: 16bb16f73feac53459cfd18bdcdc82d9, type: 3}
+  explosionSound: {fileID: 8300000, guid: c401d00c96b512e488d2e3bf5d111509, type: 3}
+  audioVolume: 50
 --- !u!135 &-8459934795486365712
 SphereCollider:
   m_ObjectHideFlags: 0

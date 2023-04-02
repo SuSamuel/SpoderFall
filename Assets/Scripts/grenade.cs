@@ -9,6 +9,8 @@ public class grenade : MonoBehaviour
     public float explosionRadius = 5f; // Radius of the explosion
     public int damage = 50;
     public GameObject explosionEffect; // Prefab for the explosion effect (e.g., particle system)
+    public AudioClip explosionSound; // Reference to the explosion audio clip
+    public float audioVolume = 50f; // Volume of the audio clip
 
     private bool hasExploded = false;
     private float countdown;
@@ -37,7 +39,8 @@ public class grenade : MonoBehaviour
             GameObject effectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(effectInstance, 4f);
         }
-
+        
+        PlaySound(explosionSound, audioVolume, transform.position);
         // Apply explosion force to nearby objects
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider nearbyObject in colliders)
@@ -55,7 +58,19 @@ public class grenade : MonoBehaviour
         }
 
         // Destroy the grenade
-        Destroy(gameObject);
+        Destroy(gameObject, explosionSound.length);
+    }
+    void PlaySound(AudioClip clip, float volume, Vector3 position)
+    {
+        GameObject audioObject = new GameObject("ExplosionAudio");
+        audioObject.transform.position = position;
+        AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        audioSource.spatialBlend = 1f; // Ensure the sound is 3D
+        audioSource.Play();
+
+        Destroy(audioObject, clip.length);
     }
 }
 

@@ -14,12 +14,15 @@ public class GrenadeThrower : MonoBehaviour
     public Camera playerCamera; // Reference to the player's camera
     public Rigidbody playerRigidbody; // Reference to the player's Rigidbody
     public TMP_Text grenadeCountText;
+    public AudioClip throwSound; // Reference to the explosion audio clip
+    private AudioSource audioSource;
 
     private float lastThrowTime; // The time when the last grenade was thrown
     private int remainingGrenades; // Track the remaining grenades
     
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         remainingGrenades = maxGrenades;
         UpdateGrenadeCountText();
         playerCamera = Camera.main;
@@ -38,6 +41,8 @@ public class GrenadeThrower : MonoBehaviour
 
     void ThrowGrenade()
     {
+        audioSource.clip = throwSound;
+        audioSource.Play();
         Vector3 spawnPosition = transform.position + playerCamera.transform.forward * 1.5f; // Adjust the multiplier to create more distance from the player
         GameObject grenadeInstance = Instantiate(grenadePrefab, spawnPosition, transform.rotation);
         Rigidbody rb = grenadeInstance.GetComponent<Rigidbody>();
