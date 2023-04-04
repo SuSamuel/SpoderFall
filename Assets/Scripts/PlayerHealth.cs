@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
         }
         UpdateHPSlider();
     }
-    
+   
     //increase HP
     public void IncreaseHP(int amount)
     {
