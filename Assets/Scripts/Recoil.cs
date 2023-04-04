@@ -1,3 +1,10 @@
+/*
+Samuel Su
+251103293
+CS4483B
+This script adds a rotation to the gun to simulate recoil
+Taken from https://forum.unity.com/threads/simple-weapon-recoil-script.70271/
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +12,13 @@ using UnityEngine;
 public class Recoil : MonoBehaviour
 {
     //public GameObject Weapon;
-    public float maxRecoil_x = -20.0f;
-    public float maxRecoil_y = -10.0f;
+    public float maxRecoil_x;
+    public float maxRecoil_y;
  
-    public float maxTrans_x = 1.0f;
-    public float maxTrans_z = -1.0f;
+    public float maxTrans_x;
+    public float maxTrans_z;
  
-    public float recoilSpeed = 10.0f;
+    public float recoilSpeed;
     public float recoil = 0.0f;
  
     void Update()
