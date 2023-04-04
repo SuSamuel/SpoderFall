@@ -125,7 +125,7 @@ public class ControllerScript : MonoBehaviour
     public void Restart(){
         Resume();
         //load the scene to reset
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     //quit the game

@@ -51,21 +51,26 @@ public class PlayerShoot : MonoBehaviour
         readyToShoot = false;
     }
     private void GetInput(){
-        if (allowHold){
-            shooting = Input.GetMouseButton(0);
-        }
-        else{
-            shooting = Input.GetMouseButtonDown(0);
+        if (ControllerScript.paused == false){
+            if (allowHold){
+                shooting = Input.GetMouseButton(0);
+            }
+            else{
+                shooting = Input.GetMouseButtonDown(0);
+            }
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazine && !reloading){
+                Reload();
+            }
+            if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
+                bulletsShot = bulletsTap;
+                Shoot();
+            }
+            else if (bulletsLeft <= 0){
+                Reload();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazine && !reloading){
-            Reload();
-        }
-
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
-            bulletsShot = bulletsTap;
-            Shoot();
-        }
+        
     }
 
     private void Reload(){
@@ -87,7 +92,7 @@ public class PlayerShoot : MonoBehaviour
 
         if(Physics.Raycast(mainCamera.position, mainCamera.forward, out rayHit, range, enemy)){
             if (rayHit.collider.CompareTag("Enemy")){
-                //rayHit.collider.GetComponent<AIhealth>().TakeDamage(damage);
+                rayHit.collider.GetComponent<AIEnemy>().TakeDamage(damage);
             }
         }
 

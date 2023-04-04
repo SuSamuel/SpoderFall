@@ -25,6 +25,8 @@ public class AIEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    public GameObject healing;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -84,8 +86,9 @@ public class AIEnemy : MonoBehaviour
         {
             ///Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 80f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            Destroy(rb.gameObject, 1);
             ///End of attack code
 
             alreadyAttacked = true;
@@ -101,10 +104,13 @@ public class AIEnemy : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.1f);
     }
     private void DestroyEnemy()
-    {
+    {   
+        if (Random.value > 0.75){
+            Instantiate(healing, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 

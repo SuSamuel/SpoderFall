@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     // call when start building button is clicked
     public void StartDemo()
     {
-        SceneManager.LoadScene("NewMap");
+        SceneManager.LoadScene("SecondMap");
     }
 
     // call when quit button is clicked

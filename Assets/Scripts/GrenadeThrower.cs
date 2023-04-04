@@ -29,13 +29,15 @@ public class GrenadeThrower : MonoBehaviour
     }
     void Update()
     {
-        // throw grenade
-        if (Input.GetKeyDown(KeyCode.G) && Time.time >= lastThrowTime + throwCooldown && remainingGrenades > 0) // Check if the cooldown has passed
-        {
-            ThrowGrenade();
-            lastThrowTime = Time.time; // Update the last throw time
-            remainingGrenades--; // Decrement the remaining grenades
-            UpdateGrenadeCountText();
+        if (ControllerScript.paused == false){
+            // throw grenade
+            if (Input.GetKeyDown(KeyCode.G) && Time.time >= lastThrowTime + throwCooldown && remainingGrenades > 0) // Check if the cooldown has passed
+            {
+                ThrowGrenade();
+                lastThrowTime = Time.time; // Update the last throw time
+                remainingGrenades--; // Decrement the remaining grenades
+                UpdateGrenadeCountText();
+            }
         }
     }
 
@@ -43,7 +45,7 @@ public class GrenadeThrower : MonoBehaviour
     {
         audioSource.clip = throwSound;
         audioSource.Play();
-        Vector3 spawnPosition = transform.position + playerCamera.transform.forward * 1.5f; // Adjust the multiplier to create more distance from the player
+        Vector3 spawnPosition = transform.position + playerCamera.transform.forward * 5f; // Adjust the multiplier to create more distance from the player
         GameObject grenadeInstance = Instantiate(grenadePrefab, spawnPosition, transform.rotation);
         Rigidbody rb = grenadeInstance.GetComponent<Rigidbody>();
 

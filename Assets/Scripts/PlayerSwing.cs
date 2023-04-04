@@ -49,20 +49,22 @@ public class PlayerSwing : MonoBehaviour
     }
     void Update()
     {   
-        //if the left mouse button is pressed down
-        if (Input.GetKeyDown(KeyCode.Q)){
-            //start swinging
-            StartGrapple();
-        }
-        //if the left mouse button is released
-        if (Input.GetKeyUp(KeyCode.Q)){
-            //stop swinging
-            StopGrapple();
-        }
+        if(ControllerScript.paused == false){
+            //if the left mouse button is pressed down
+            if (Input.GetKeyDown(KeyCode.Q)){
+                //start swinging
+                StartGrapple();
+            }
+            //if the left mouse button is released
+            if (Input.GetKeyUp(KeyCode.Q)){
+                //stop swinging
+                StopGrapple();
+            }
 
-        //if we are swinging, allow for some extra movement to feel better
-        if (checkSwing){
-            Movement();
+            //if we are swinging, allow for some extra movement to feel better
+            if (checkSwing){
+                Movement();
+            }
         }
     }
 
