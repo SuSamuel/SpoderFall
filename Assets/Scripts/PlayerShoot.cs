@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     public bool allowHold;
     int bulletsLeft;
     int bulletsShot;
-
+    AudioSource gunAudio;
     bool shooting;
     bool readyToShoot;
     bool reloading;
@@ -52,6 +52,7 @@ public class PlayerShoot : MonoBehaviour
     private void Awake(){
         bulletsLeft = magazine;
         readyToShoot = true;
+        gunAudio = GetComponent<AudioSource>();
     }
 
     private void OnEnable(){
@@ -112,6 +113,8 @@ public class PlayerShoot : MonoBehaviour
         }
         //create a muzzle flash
         Instantiate(muzzleFlash, AttackPoint.position, Quaternion.identity, AttackPoint);
+        // play sound
+        gunAudio.Play();
 
         Invoke("ResetShots", timeBetweenShooting);
 
