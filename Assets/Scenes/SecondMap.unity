@@ -1814,7 +1814,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -351, y: 0}
+  m_AnchoredPosition: {x: -348, y: 37.504}
   m_SizeDelta: {x: 315.1798, y: 283.0076}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &658662375
@@ -1848,6 +1848,8 @@ MonoBehaviour:
 
     Grapple
     - E
+
+    Swing - Q
 
     Switch Gun - TAB
 

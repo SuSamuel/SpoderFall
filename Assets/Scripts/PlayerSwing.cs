@@ -19,9 +19,10 @@ public class PlayerSwing : MonoBehaviour
     private PlayerGrapple playerGrapple;
     public Transform mainCamera;
     private LineRenderer lr;
-
+    
     private Vector3 endPoint;
     public LayerMask ground;
+    AudioSource grappleSound;
 
     private float maxDistance = 100f;
 
@@ -41,6 +42,7 @@ public class PlayerSwing : MonoBehaviour
     {
         playerGrapple = GetComponent<PlayerGrapple>();
         lr = GetComponent<LineRenderer>();
+        grappleSound = GetComponent<AudioSource>();
     }
 
     //draw the rope only after all the updates are already done
@@ -74,6 +76,8 @@ public class PlayerSwing : MonoBehaviour
         playerGrapple.EndGrapple();
         //set our swinging bool to true
         player.GetComponent<PlayerMovement>().swinging = true;
+        // play sound
+        grappleSound.Play();
         //create a raycast to see if the player hit anything that can be swung on
         RaycastHit target;
         //see if there is anything with the ground layer infront of the player within maxdistance
