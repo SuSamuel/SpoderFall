@@ -55,6 +55,10 @@ public class grenade : MonoBehaviour
             {
                 playerhealth.DecreaseHP(damage);
             }
+            AIEnemy aiEnemy = nearbyObject.GetComponent<AIEnemy>();
+            if (aiEnemy != null){
+                aiEnemy.TakeDamage(damage);
+            }
         }
 
         // Destroy the grenade

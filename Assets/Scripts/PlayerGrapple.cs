@@ -19,6 +19,7 @@ public class PlayerGrapple : MonoBehaviour
     public Transform mainCamera;
     public Transform gunTip;
     public LayerMask ground;
+    AudioSource grappleSound;
 
     public float maxDistance;
     public float grappleDelay;
@@ -37,6 +38,7 @@ public class PlayerGrapple : MonoBehaviour
     {
         playerSwing = GetComponent<PlayerSwing>();
         lr = GetComponent<LineRenderer>();
+        grappleSound = GetComponent<AudioSource>();
     }
 
     //update the visuals on the line renderer after all the updates
@@ -56,7 +58,7 @@ public class PlayerGrapple : MonoBehaviour
     void Update()
     {   
         // if the user pressed the right mouse button
-        if (Input.GetKeyDown(KeyCode.E)){
+        if (Input.GetKeyDown(KeyCode.E) && ControllerScript.paused == false){
             //grapple
             StartGrapple();
         }
@@ -72,7 +74,8 @@ public class PlayerGrapple : MonoBehaviour
         if (timer > 0 ){
             return;
         }
-
+        // play sound effect
+        grappleSound.Play();
         //set grapple to true
         grappling = true;
         //stop swinging
